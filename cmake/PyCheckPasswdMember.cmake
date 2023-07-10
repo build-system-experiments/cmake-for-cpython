@@ -1,0 +1,12 @@
+include(CheckStructHasMember)
+
+macro(py_check_passwd_member MEMBER)
+    string(TOUPPER "HAVE_STRUCT_PASSWD_${MEMBER}" _DEF)
+    set(_HEADERS pwd.h sys/types.h)
+    unset(CMAKE_REQUIRED_LIBRARIES)
+    unset(CMAKE_REQUIRED_INCLUDES)
+    unset(CMAKE_EXTRA_INCLUDE_FILES)
+    check_struct_has_member("struct passwd" ${MEMBER} "${_HEADERS}" ${_DEF})
+    unset(_HEADERS)
+    unset(_DEF)
+endmacro()

@@ -1,0 +1,7 @@
+macro(py_coerce_int VAR)
+    if(${VAR})
+        set(${VAR} 1)
+    else()
+        set(${VAR} 0)
+    endif()
+endmacro()

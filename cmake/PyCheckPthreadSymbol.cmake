@@ -1,0 +1,11 @@
+include(CheckSymbolExists)
+
+set(CMAKE_REQUIRED_LINK_OPTIONS Threads::Threads)
+macro(py_check_pthread_symbol FUNC)
+    string(TOUPPER "HAVE_${FUNC}" _DEF)
+    unset(CMAKE_REQUIRED_LIBRARIES)
+    unset(CMAKE_REQUIRED_INCLUDES)
+    unset(CMAKE_EXTRA_INCLUDE_FILES)
+    check_symbol_exists(${FUNC} "pthread.h" ${_DEF})
+    unset(_DEF)
+endmacro()

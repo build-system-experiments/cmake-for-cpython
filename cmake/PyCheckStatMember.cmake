@@ -1,0 +1,10 @@
+include(CheckStructHasMember)
+
+macro(py_check_stat_member MEMBER)
+    string(TOUPPER "HAVE_STRUCT_STAT_${MEMBER}" _DEF)
+    unset(CMAKE_REQUIRED_LIBRARIES)
+    unset(CMAKE_REQUIRED_INCLUDES)
+    unset(CMAKE_EXTRA_INCLUDE_FILES)
+    check_struct_has_member("struct stat" ${MEMBER} "sys/stat.h" ${_DEF})
+    unset(_DEF)
+endmacro()

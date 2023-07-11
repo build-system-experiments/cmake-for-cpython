@@ -1,0 +1,10 @@
+include(CheckFunctionExists)
+
+macro(py_check_netdb_func FUNC)
+    string(TOUPPER "HAVE_${FUNC}" _DEF)
+    unset(CMAKE_REQUIRED_LIBRARIES)
+    unset(CMAKE_REQUIRED_INCLUDES)
+    set(CMAKE_EXTRA_INCLUDE_FILES "netdb.h")
+    check_function_exists(${FUNC} ${_DEF})
+    unset(_DEF)
+endmacro()
